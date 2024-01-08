@@ -1,4 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using System.Configuration;
+using WebApplicationNewVersion.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<WebApplicationNewVersionContext>(options =>
+    options.UseMySql(builder.Configuration.GetConnectionString("WebApplicationNewVersionContext"),
+    new MySqlServerVersion(new Version(8, 0, 28)), // Substitua pela versão do seu servidor MySQL
+    builder => builder.MigrationsAssembly("WebApplicationNewVersion")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
