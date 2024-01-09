@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using System.Configuration;
 using WebApplicationNewVersion.Data;
+
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<WebApplicationNewVersionContext>(options =>
     options.UseMySql(builder.Configuration.GetConnectionString("WebApplicationNewVersionContext"),
@@ -10,6 +10,7 @@ builder.Services.AddDbContext<WebApplicationNewVersionContext>(options =>
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<SeedingService>();
 
 var app = builder.Build();
 
@@ -19,6 +20,18 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Home/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
+
+}
+// Crie um escopo para resolver o serviço SeedingService
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    // Resolva o serviço SeedingService
+    var seed = services.GetRequiredService<SeedingService>();
+
+    // Chame o método Seed
+    seed.Seed();
 }
 
 app.UseHttpsRedirection();
