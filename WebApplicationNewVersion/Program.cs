@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using WebApplicationNewVersion.Data;
+using WebApplicationNewVersion.Services;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,7 @@ builder.Services.AddDbContext<WebApplicationNewVersionContext>(options =>
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<SeedingService>();
+builder.Services.AddScoped<SellerService>();
 
 var app = builder.Build();
 
