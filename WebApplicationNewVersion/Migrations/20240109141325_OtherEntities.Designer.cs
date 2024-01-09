@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApplicationNewVersion.Data;
 
@@ -10,9 +11,10 @@ using WebApplicationNewVersion.Data;
 namespace WebApplicationNewVersion.Migrations
 {
     [DbContext(typeof(WebApplicationNewVersionContext))]
-    partial class WebApplicationNewVersionContextModelSnapshot : ModelSnapshot
+    [Migration("20240109141325_OtherEntities")]
+    partial class OtherEntities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
