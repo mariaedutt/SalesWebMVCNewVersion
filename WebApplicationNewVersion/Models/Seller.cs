@@ -27,10 +27,11 @@ namespace WebApplicationNewVersion.Models
         [DisplayFormat(DataFormatString = "{0:F2}")]
         [Range(100.00, 50000.00, ErrorMessage ="{0} must be from {1} to {2}")]
         public double BaseSalary { get; set; }
+
         public Department Department { get; set; }
 
-        [Display(Name = "Department")]
         public int DepartmentId { get; set; }
+
         public ICollection<SalesRecord> Sales { get; set; } = new List<SalesRecord>();
 
         public Seller() { }

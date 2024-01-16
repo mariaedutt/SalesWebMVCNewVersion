@@ -1,4 +1,5 @@
-﻿using WebApplicationNewVersion.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using WebApplicationNewVersion.Data;
 using WebApplicationNewVersion.Models;
 
 namespace WebApplicationNewVersion.Services
@@ -12,9 +13,9 @@ namespace WebApplicationNewVersion.Services
             _context = context;
         }
 
-        public List<Department> FindAll()
+        public async Task<List<Department>> FindAllAsync()
         {
-            return _context.Department.OrderBy(x => x.Name).ToList();
+            return await _context.Department.OrderBy(x => x.Name).ToListAsync();
         }
     }
 }
