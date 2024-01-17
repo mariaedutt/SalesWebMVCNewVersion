@@ -28,7 +28,7 @@ namespace WebApplicationNewVersion.Models
         [Range(100.00, 50000.00, ErrorMessage ="{0} must be from {1} to {2}")]
         public double BaseSalary { get; set; }
 
-        public Department Department { get; set; }
+        public Department? Department { get; set; }
 
         public int DepartmentId { get; set; }
 
